@@ -1,4 +1,4 @@
-#include "matrix.hpp"
+ #include "matrix.hpp"
 using namespace std;
 
 float ** create_matr (int rows_,int collumns_){
@@ -64,6 +64,7 @@ matrix_t matrix_t::operator +( matrix_t const & other ) const {
 
 matrix_t matrix_t::operator -( matrix_t const & other ) const {
     matrix_t result;
+    result.elements_ = create_matr(rows_, collumns_);
     for (unsigned int i = 0; i < rows_; i++)
         for (unsigned int j = 0; j < collumns_; j++)
             result.elements_[i][j] = elements_[i][j] - other.elements_[i][j];
@@ -74,6 +75,7 @@ matrix_t matrix_t::operator -( matrix_t const & other ) const {
 
 matrix_t matrix_t::operator *( matrix_t const & other ) const {
     matrix_t result;
+    result.elements_ = create_matr(rows_, other.collumns_);
     for (int i = 0; i < rows_; i++) {
         for (int j = 0; j < other.collumns_; j++) {
             result.elements_[i][j] = 0;
@@ -102,9 +104,10 @@ matrix_t & matrix_t::operator +=( matrix_t const & other ) {
 
 matrix_t & matrix_t::operator *=( matrix_t const & other ) {
     matrix_t copy(*this);
+    copy.elements_ = create_matr(rows_, other.collumns_);
     for (int i = 0; i < rows_; i++) {
         for (int j = 0; j < other.collumns_; j++) {
-            elements_[i][j] = 0;
+            copy.elements_[i][j] = 0;
             for (int f = 0; f < collumns_; f++)
                 elements_[i][j] += elements_[i][f] * other.elements_[f][j];
         }
