@@ -12,7 +12,7 @@ float ** create_matr (int rows_,int collumns_){
 matrix_t::matrix_t() {
     rows_ = 0;
     collumns_ = 0;
-    elements_ = create_matr(rows_, collumns_);
+    elements_ = nullptr;
 }
 
 matrix_t::matrix_t( matrix_t const & other ) {
