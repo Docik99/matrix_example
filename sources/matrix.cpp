@@ -17,6 +17,12 @@ matrix_t::matrix_t() {
     elements_ = create_matr(rows_, collumns_);
 }
 
+matrix_t::matrix_t(int in_stroki,int in_stolbi){
+    stroki=in_stroki;
+    stolbi=in_stolbi;
+    data = Create_Matrix(stroki, stolbi);
+}
+
 matrix_t::matrix_t( matrix_t const & other ) {
     elements_ = create_matr(other.rows_, other.collumns_);
     for (int i = 0; i < other.rows_; i++)
