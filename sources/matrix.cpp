@@ -4,9 +4,7 @@ using namespace std;
 float ** create_matr (int rows_,int collumns_){
     float ** new_matr = new float * [rows_];
     for (int i = 0; i < rows_; i++){
-        new_matr[i] = new float [rows_];
-        for (int j = 0; j < collumns_; j++)
-            new_matr[i][j] = 0;
+        new_matr[i] = new float [collumns_];    
     }
     return  new_matr;
 }
