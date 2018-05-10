@@ -18,7 +18,6 @@ TEST_CASE("read and write")
         "2 2 2\n"
         "3 3 3" };
     matrix_t matrix;
-    matrix_t matrix2;
     istringstream istream{ input };
     
     REQUIRE( matrix.read( istream ) );
@@ -31,7 +30,7 @@ TEST_CASE("read and write")
     REQUIRE( input == ostream.str() );
 }
 
-/*TEST_CASE("a+b")
+TEST_CASE("a+b")
 {
     string input1{
         "3, 3\n"
@@ -61,8 +60,8 @@ TEST_CASE("read and write")
     matrix2.read(istream2);
     matrix3 = matrix1 + matrix2;
     
-    //REQUIRE( matrix3.rows() == 3 );
-    //REQUIRE( matrix3.collumns() == 3 );
+    REQUIRE( matrix3.rows() == 3 );
+    REQUIRE( matrix3.collumns() == 3 );
     
     ostringstream ostream;
     matrix3.write( ostream );
@@ -70,7 +69,7 @@ TEST_CASE("read and write")
     REQUIRE( input3 == ostream.str());
 }
 
-TEST_CASE("a-b")
+/*TEST_CASE("a-b")
 {
     string input1{
         "3, 3\n"
