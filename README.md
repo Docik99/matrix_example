@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/justcppdev/matrix_example.svg?branch=master)](https://travis-ci.org/justcppdev/matrix_example)
+[![Build Status](https://travis-ci.org/Docik99/matrix_example.svg?branch=master)](https://travis-ci.org/Docik99/matrix_example)
 
 # matrix
 
