@@ -30,7 +30,7 @@ TEST_CASE("read and write")
     REQUIRE( input == ostream.str() );
 }
 
-/*TEST_CASE("a+b")
+TEST_CASE("a+b")
 {
     string input1{
         "3, 3\n"
@@ -69,7 +69,7 @@ TEST_CASE("read and write")
     REQUIRE( input3 == ostream.str());
 }
 
-TEST_CASE("a-b")
+/*TEST_CASE("a-b")
 {
     string input1{
         "3, 3\n"
@@ -106,7 +106,7 @@ TEST_CASE("a-b")
     matrix3.write( ostream );
     
     REQUIRE( input3 == ostream.str());
-}*/
+}
 
 TEST_CASE("a*b")
 {
@@ -248,4 +248,4 @@ TEST_CASE("a-=b")
     matrix1.write( ostream );
     
     REQUIRE( input3 == ostream.str());
-}
+}*/
