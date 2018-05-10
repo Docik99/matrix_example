@@ -2,7 +2,7 @@
 
 class matrix_t {
 private:
-    int ** elements_;
+    float ** elements_;
     std::size_t rows_;
     std::size_t collumns_;
 public:
