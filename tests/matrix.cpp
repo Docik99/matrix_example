@@ -248,4 +248,4 @@ TEST_CASE("a-=b")
     matrix1.write( ostream );
     
     REQUIRE( input3 == ostream.str());
-}*//
+}*/
