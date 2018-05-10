@@ -1,10 +1,10 @@
 #include "matrix.hpp"
 using namespace std;
 
-int ** create_matr (int rows_,int collumns_){
-    int ** new_matr = new int * [rows_];
+float ** create_matr (int rows_,int collumns_){
+    float ** new_matr = new float * [rows_];
     for (int i = 0; i < rows_; i++){
-        new_matr[i] = new int [rows_];
+        new_matr[i] = new float [rows_];
         for (int j = 0; j < collumns_; j++)
             new_matr[i][j] = 0;
     }
@@ -122,9 +122,9 @@ istream & matrix_t::read( std::istream & stream ) {
 
     bool success = true;
     if( stream >> rows && stream >> symbol && symbol == ',' && stream >> collumns ) {
-        int ** elements = new int *[ rows ];
+        float ** elements = new float *[ rows ];
         for( std::size_t i = 0; success && i < rows; ++i ) {
-            elements[ i ] = new int[ collumns ];
+            elements[ i ] = new float[ collumns ];
             for( std::size_t j = 0; j < collumns; ++j ) {
                 if( !( stream >> elements[ i ][ j ] ) ) {
                     success = false;
