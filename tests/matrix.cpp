@@ -30,7 +30,7 @@ TEST_CASE("read and write")
     REQUIRE( input == ostream.str() );
 }
 
-TEST_CASE("read and write2")
+TEST_CASE("a+b")
 {
     string input1{
         "3, 3\n"
@@ -69,7 +69,7 @@ TEST_CASE("read and write2")
     REQUIRE( input3 == ostream.str());
 }
 
-TEST_CASE("op -")
+TEST_CASE("a-b")
 {
     string input1{
         "3, 3\n"
@@ -108,7 +108,7 @@ TEST_CASE("op -")
     REQUIRE( input3 == ostream.str());
 }
 
-TEST_CASE("op *")
+TEST_CASE("a*b")
 {
     string input1{
         "3, 4\n"
@@ -148,7 +148,7 @@ TEST_CASE("op *")
     REQUIRE( input3 == ostream.str());
 }
 
-TEST_CASE("op *=")
+TEST_CASE("a*=b")
 {
     string input1{
         "3, 3\n"
@@ -182,7 +182,7 @@ TEST_CASE("op *=")
     REQUIRE( input3 == ostream.str());
 }
 
-TEST_CASE("op +=")
+TEST_CASE("a+=b")
 {
     string input1{
         "3, 3\n"
@@ -216,7 +216,7 @@ TEST_CASE("op +=")
     REQUIRE( input3 == ostream.str());
 }
 
-TEST_CASE("op -=")
+TEST_CASE("a-=b")
 {
     string input1{
         "3, 3\n"
