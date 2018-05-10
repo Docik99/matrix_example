@@ -57,7 +57,6 @@ std::size_t matrix_t::collumns() const
 
 matrix_t matrix_t::operator +( matrix_t const & other ) const
 {
-	assert(rows_ == other.rows_ && collumns_ == other.collumns_);	
 	matrix_t result;
 	result.rows_=rows_;
 	result.collumns_=collumns_;
@@ -73,7 +72,6 @@ matrix_t matrix_t::operator +( matrix_t const & other ) const
 
 matrix_t matrix_t::operator -( matrix_t const & other ) const
 {
-	assert(rows_ == other.rows_ && collumns_ == other.collumns_);
 	matrix_t result;
 	result.rows_=rows_;
 	result.collumns_=collumns_;	
@@ -89,7 +87,6 @@ matrix_t matrix_t::operator -( matrix_t const & other ) const
 
 matrix_t matrix_t::operator *( matrix_t const & other ) const
 {
-	assert(collumns_ == other.rows_);
 	matrix_t result;
 	result.rows_=rows_;
 	result.collumns_=other.collumns_;
@@ -109,7 +106,6 @@ matrix_t matrix_t::operator *( matrix_t const & other ) const
 
 matrix_t & matrix_t::operator -=( matrix_t const & other )
 {
-	assert(rows_ == other.rows_ && collumns_ == other.collumns_);
 	for (std::size_t i = 0; i < rows_; ++i) {
 		for (std::size_t j = 0; j < collumns_; ++j) {
 		elements_[i][j] = elements_[i][j]-other.elements_[i][j];
@@ -120,7 +116,6 @@ matrix_t & matrix_t::operator -=( matrix_t const & other )
 
 matrix_t & matrix_t::operator +=( matrix_t const & other )
 {
-	assert(rows_ == other.rows_ && collumns_ == other.collumns_);
 	for (std::size_t i = 0; i < rows_; ++i) {
 		for (std::size_t j = 0; j < collumns_; ++j) {
 			elements_[i][j] = elements_[i][j]+other.elements_[i][j];
@@ -131,7 +126,6 @@ matrix_t & matrix_t::operator +=( matrix_t const & other )
 
 matrix_t & matrix_t::operator *=( matrix_t const & other )
 {
-	assert(collumns_ == other.rows_);
 	matrix_t result;
 	result.rows_=rows_;
 	result.collumns_=other.collumns_;
