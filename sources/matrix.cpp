@@ -1,10 +1,10 @@
 #include "matrix.hpp"
 using namespace std;
 
-float ** create_matr (int rows_,int collumns_){
-    float ** new_matr = new float * [rows_];
+int ** create_matr (int rows_,int collumns_){
+    int ** new_matr = new int * [rows_];
     for (int i = 0; i < rows_; i++){
-        new_matr[i] = new float [rows_];
+        new_matr[i] = new int [rows_];
         for (int j = 0; j < collumns_; j++)
             new_matr[i][j] = 0;
     }
@@ -122,9 +122,9 @@ istream & matrix_t::read( std::istream & stream ) {
 
     bool success = true;
     if( stream >> rows && stream >> symbol && symbol == ',' && stream >> collumns ) {
-        float ** elements = new float *[ rows ];
+        int ** elements = new int *[ rows ];
         for( std::size_t i = 0; success && i < rows; ++i ) {
-            elements[ i ] = new float[ collumns ];
+            elements[ i ] = new int[ collumns ];
             for( std::size_t j = 0; j < collumns; ++j ) {
                 if( !( stream >> elements[ i ][ j ] ) ) {
                     success = false;
@@ -163,9 +163,9 @@ istream & matrix_t::read( std::istream & stream ) {
 
 ostream & matrix_t::write( std::ostream & stream ) const {
     stream << rows_ << ", " << collumns_;
-    for( std::size_t i = 0; i < rows_; ++i ) {
+    for( size_t i = 0; i < rows_; ++i ) {
         stream << '\n';
-        for( std::size_t j = 0; j < collumns_; ++j ) {
+        for( size_t j = 0; j < collumns_; ++j ) {
             stream << elements_[ i ][ j ];
             if( j != rows_ - 1 ) {
                 stream << ' ';
