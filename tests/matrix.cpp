@@ -30,7 +30,7 @@ TEST_CASE("read and write")
     REQUIRE( input == ostream.str() );
 }
 
-TEST_CASE("op +")
+TEST_CASE("read and write2")
 {
     string input1{
         "3, 3\n"
