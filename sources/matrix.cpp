@@ -17,10 +17,10 @@ matrix_t::matrix_t() {
     elements_ = create_matr(rows_, collumns_);
 }
 
-matrix_t::matrix_t(int in_stroki,int in_stolbi){
-    stroki=in_stroki;
-    stolbi=in_stolbi;
-    data = Create_Matrix(stroki, stolbi);
+matrix_t::matrix_t(int rows,int collumns){
+    rows_=rows;
+    collumns_=collumns;
+    data = Create_Matrix(rows_, collumns_);
 }
 
 matrix_t::matrix_t( matrix_t const & other ) {
