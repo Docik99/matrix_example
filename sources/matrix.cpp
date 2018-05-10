@@ -11,7 +11,7 @@ float ** create_matr (int rows_,int collumns_){
 matrix_t::matrix_t() {
     rows_ = 0;
     collumns_ = 0;
-    elements_ = create_matr(rows_, collumns_);
+    elements_ = nullptr;
 }
 
 matrix_t::matrix_t( matrix_t const & other ) {
@@ -53,6 +53,7 @@ size_t matrix_t::collumns() const{
 
 matrix_t matrix_t::operator +( matrix_t const & other ) const {
     matrix_t result;
+    result.elements_ = create_matr(rows_, collumns_);
     for (unsigned int i = 0; i < rows_; i++)
         for (unsigned int j = 0; j < collumns_; j++)
             result.elements_[i][j] = elements_[i][j] + other.elements_[i][j];
