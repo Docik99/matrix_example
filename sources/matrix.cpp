@@ -1,34 +1,27 @@
- #include "matrix.hpp"
+#include "matrix.hpp"
 using namespace std;
 
 float ** create_matr (int rows_,int collumns_){
     float ** new_matr = new float * [rows_];
-    for (int i = 0; i < rows_; i++)
-        new_matr[i] = new float [collumns_];
+    for (int i = 0; i < rows_; i++){
+        new_matr[i] = new float [rows_];
+        for (int j = 0; j < collumns_; j++)
+            new_matr[i][j] = 0;
+    }
     return  new_matr;
 }
 
 matrix_t::matrix_t() {
     rows_ = 0;
     collumns_ = 0;
-    elements_ = nullptr;
-}
-
-matrix_t::matrix_t(int rows,int collumns){
-    rows_=rows;
-    collumns_=collumns;
     elements_ = create_matr(rows_, collumns_);
 }
 
-matrix_t::matrix_t( matrix_t const & object ) {
-    rows_=object.rows_;
-    collumns_=object.collumns_;
-    elements_=create_matr(rows_, collumns_);
-    for ( int i = 0; i < rows_; ++i){
-        for ( int j = 0; j < collumns_; ++j){
-            elements_[i][j] = object.elements_[i][j];
-        }
-    }
+matrix_t::matrix_t( matrix_t const & other ) {
+    elements_ = create_matr(other.rows_, other.collumns_);
+    for (int i = 0; i < other.rows_; i++)
+        for (int j = 0; j < other.collumns_; j++)
+            elements_[i][j] = other.elements_[i][j];
 }
 
 matrix_t & matrix_t::operator =( matrix_t const & other ) {
@@ -38,7 +31,7 @@ matrix_t & matrix_t::operator =( matrix_t const & other ) {
         delete[] elements_;
         rows_ = other.rows_;
         collumns_ = other.collumns_;
-        elements_ = create_matr(other.rows_, other.collumns_);
+        elements_ = create_matr(rows_, collumns_);
         for (int i = 0; i < other.rows_; i++)
             for (int j = 0; j < other.collumns_; j++)
                 elements_[i][j] = other.elements_[i][j];
@@ -53,55 +46,47 @@ matrix_t::~matrix_t() {
     delete[] elements_;
 }
 
-size_t matrix_t::rows() const {
+size_t matrix_t::rows()  {
     return rows_;
 }
 
-size_t matrix_t::collumns() const{
+size_t matrix_t::collumns() {
     return collumns_;
 }
 
 matrix_t matrix_t::operator +( matrix_t const & other ) const {
     matrix_t result;
-    result.elements_ = create_matr(rows_, collumns_);
     for (unsigned int i = 0; i < rows_; i++)
         for (unsigned int j = 0; j < collumns_; j++)
             result.elements_[i][j] = elements_[i][j] + other.elements_[i][j];
-    result.rows_ = rows_;
-    result.collumns_ = collumns_;
     return result;
 }
 
 matrix_t matrix_t::operator -( matrix_t const & other ) const {
     matrix_t result;
-    result.elements_ = create_matr(rows_, collumns_);
     for (unsigned int i = 0; i < rows_; i++)
         for (unsigned int j = 0; j < collumns_; j++)
             result.elements_[i][j] = elements_[i][j] - other.elements_[i][j];
-    result.rows_ = rows_;
-    result.collumns_ = collumns_;
     return result;
 }
 
 matrix_t matrix_t::operator *( matrix_t const & other ) const {
     matrix_t result;
-	result.rows_=rows_;
-	result.collumns_=other.collumns_;
-	result.elements_=new float *[rows_];
-        for (int i = 0; i < rows_; i++) {
-             	result.elements_[i] = new float[other.collumns_];
-		for (int j = 0; j < other.collumns_; j++) {
-			float temp = 0;
-			for (int k = 0; k < collumns_; k++) {
-			temp += elements_[i][k] * other.elements_[k][j];
-			}
-			result.elements_[i][j] = temp;
-		}
-	} 
-	return result;
+    for (int i = 0; i < rows_; i++) {
+        for (int j = 0; j < other.collumns_; j++) {
+            result.elements_[i][j] = 0;
+            for (int f = 0; f < collumns_; f++)
+                result.elements_[i][j] += elements_[i][f] * other.elements_[f][j];
+        }
+    }
+    result.rows_ = rows_;
+    result.collumns_ = other.collumns_;
+    return result;
 }
 
 matrix_t & matrix_t::operator -=( matrix_t const & other ) {
+    rows_ = other.rows_;
+    collumns_ = other.collumns_;
     for (unsigned int i = 0; i < rows_; i++)
         for (unsigned int j = 0; j < collumns_; j++)
             elements_[i][j] -= other.elements_[i][j];
@@ -109,6 +94,8 @@ matrix_t & matrix_t::operator -=( matrix_t const & other ) {
 }
 
 matrix_t & matrix_t::operator +=( matrix_t const & other ) {
+    rows_ = other.rows_;
+    collumns_ = other.collumns_;
     for (unsigned int i = 0; i < rows_; i++)
         for (unsigned int j = 0; j < collumns_; j++)
             elements_[i][j] += other.elements_[i][j];
@@ -116,26 +103,16 @@ matrix_t & matrix_t::operator +=( matrix_t const & other ) {
 }
 
 matrix_t & matrix_t::operator *=( matrix_t const & other ) {
-    matrix_t result;
-	result.rows_=rows_;
-	result.collumns_=other.collumns_;
-	result.elements_=new float *[rows_];
-        for (int i = 0; i < rows_; i++) {
-             	result.elements_[i]=new float[other.collumns_];
-		for (int j = 0; j < other.collumns_; j++) {
-			float temp = 0;
-			for (int k = 0; k < collumns_; k++) {
-			temp += elements_[i][k] * other.elements_[k][j];
-			}
-			result.elements_[i][j] = temp;
-		}
-	} 
-	for (int i = 0; i < rows_; i++) {
-		for (int j = 0; j < other.collumns(); j++){
-			elements_[i][j]=result.elements_[i][j];
-		}
-	}
-	return *this;
+    matrix_t copy(*this);
+    for (int i = 0; i < rows_; i++) {
+        for (int j = 0; j < other.collumns_; j++) {
+            elements_[i][j] = 0;
+            for (int f = 0; f < collumns_; f++)
+                elements_[i][j] += elements_[i][f] * other.elements_[f][j];
+        }
+    }
+    collumns_ = other.collumns_;
+    return *this;
 }
 
 istream & matrix_t::read( std::istream & stream ) {
