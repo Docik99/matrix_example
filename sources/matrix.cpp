@@ -107,9 +107,9 @@ matrix_t & matrix_t::operator *=( matrix_t const & other ) {
     copy.elements_ = create_matr(rows_, other.collumns_);
     for (int i = 0; i < rows_; i++) {
         for (int j = 0; j < other.collumns_; j++) {
-            copy.elements_[i][j] = 0;
+            elements_[i][j] = 0;
             for (int f = 0; f < collumns_; f++)
-                elements_[i][j] += elements_[i][f] * other.elements_[f][j];
+                elements_[i][j] += copy.elements_[i][f] * other.elements_[f][j];
         }
     }
     collumns_ = other.collumns_;
