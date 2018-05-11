@@ -23,7 +23,7 @@ matrix_t::matrix_t(int rows,int collumns){
 matrix_t::matrix_t( matrix_t const & object ) {
     rows_=object.rows_;
     collumns_=object.collumns_;
-    elements=create_matr(rows_, collumns_);
+    elements_=create_matr(rows_, collumns_);
     for ( int i = 0; i < rows_; ++i){
         for ( int j = 0; j < collumns_; ++j){
             elements_[i][j] = object.elements_[i][j];
