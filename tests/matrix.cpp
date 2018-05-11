@@ -119,19 +119,19 @@ TEST_CASE("a*b")
     istringstream istream1{input1};
    
     string input2{
-        "4, 3\n"
-        "1 1 1\n"
-        "1 1 1\n"
-        "1 1 1\n"
-        "1 1 1\n" };
+        "4, 2\n"
+        "1 1\n"
+        "1 1\n"
+        "1 1\n"
+        "1 1\n" };
     matrix_t matrix2;
     istringstream istream2{input2};
     
     string input3{
-        "3, 3\n"
-        "8 8 8\n"
-        "8 8 8\n"
-        "8 8 8" };
+        "3, 2\n"
+        "8 8\n"
+        "8 8\n"
+        "8 8" };
     matrix_t matrix3;
     istringstream istream3{input3};
     
