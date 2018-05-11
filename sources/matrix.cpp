@@ -28,7 +28,7 @@ matrix_t & matrix_t::operator =( matrix_t const & other ) {
         delete[] elements_;
         rows_ = other.rows_;
         collumns_ = other.collumns_;
-        elements_ = create_matr(rows_, collumns_);
+        elements_ = create_matr(other.rows_, other.collumns_);
         for (int i = 0; i < other.rows_; i++)
             for (int j = 0; j < other.collumns_; j++)
                 elements_[i][j] = other.elements_[i][j];
