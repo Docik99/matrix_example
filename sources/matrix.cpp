@@ -15,10 +15,15 @@ matrix_t::matrix_t() {
 }
 
 matrix_t::matrix_t( matrix_t const & other ) {
-    elements_ = create_matr(other.rows_, other.collumns_);
-    for (int i = 0; i < other.rows_; i++)
-        for (int j = 0; j < other.collumns_; j++)
-            elements_[i][j] = other.elements_[i][j];
+    rows_ = other.rows();
+	collumns_=other.collumns();
+	elements_= new float *[other.rows()];
+	for (std::size_t i = 0; i < other.rows(); ++i) {
+		elements_[i] = new float[other.collumns()];
+		for (std::size_t j = 0; j < other.collumns(); ++j) {
+			elements_[i][j] = other.elements_[i][j];
+		}
+	}
 }
 
 matrix_t & matrix_t::operator =( matrix_t const & other ) {
