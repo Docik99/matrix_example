@@ -78,11 +78,11 @@ matrix_t matrix_t::operator *( matrix_t const & other ) const {
 	result.rows_=rows_;
 	result.collumns_=other.collumns_;
 	result.elements_=new float *[rows_];
-        for (std::size_t i = 0; i < rows_; i++) {
-             	result.elements_[i]=new float[other.collumns()];
-		for (std::size_t j = 0; j < other.collumns(); j++) {
+        for (int i = 0; i < rows_; i++) {
+             	result.elements_[i] = new float[other.collumns];
+		for (int j = 0; j < other.collumns; j++) {
 			float temp = 0;
-			for (std::size_t k = 0; k < collumns_; k++) {
+			for (int k = 0; k < collumns_; k++) {
 			temp += elements_[i][k] * other.elements_[k][j];
 			}
 			result.elements_[i][j] = temp;
