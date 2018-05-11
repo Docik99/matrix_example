@@ -3,8 +3,8 @@
 class matrix_t {
 private:
     float ** elements_;
-    std::size_t rows_;
-    std::size_t collumns_;
+    unsigned int rows_;
+    unsigned int collumns_;
 public:
     matrix_t();
     matrix_t( matrix_t const & other );
