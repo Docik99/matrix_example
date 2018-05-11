@@ -75,16 +75,17 @@ matrix_t matrix_t::operator -( matrix_t const & other ) const {
 
 matrix_t matrix_t::operator *( matrix_t const & other ) const {
     matrix_t result;
-    result.rows_ = rows_;
-    result.collumns_ = collumns_;
-    result.elements_ = create_matr(rows_, other.collumns_);
-    for (int i = 0; i<rows_; i++) {
-        for (int j = 0; j<other.collumns_; j++) {
+    result.elements_ = new float *[rows_];
+    for (int i = 0; i < rows_; i++) {
+        result.elements_[i] = new float[other.collumns_];
+        for (int j = 0; j < other.collumns_; j++) {
             result.elements_[i][j] = 0;
-            for (int h = 0; h<collumns_; h++)
-                result.elements_[i][j] += elements_[i][h]*other.elements_[h][j];
+            for (int f = 0; f < collumns_; f++)
+                result.elements_[i][j] += elements_[i][f] * other.elements_[f][j];
         }
     }
+    result.rows_ = rows_;
+    result.collumns_ = other.collumns_;
     return result;
 }
 
