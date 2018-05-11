@@ -74,10 +74,9 @@ matrix_t matrix_t::operator -( matrix_t const & other ) const {
 }
 
 matrix_t matrix_t::operator *( matrix_t const & other ) const {
-    matrix_t result;
-    result.elements_ = new float *[rows_];
+     matrix_t result;
+    result.elements_ = create_matr(rows_, other.collumns_);
     for (int i = 0; i < rows_; i++) {
-        result.elements_[i] = new float[other.collumns_];
         for (int j = 0; j < other.collumns_; j++) {
             result.elements_[i][j] = 0;
             for (int f = 0; f < collumns_; f++)
