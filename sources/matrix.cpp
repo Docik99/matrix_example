@@ -14,6 +14,12 @@ matrix_t::matrix_t() {
     elements_ = nullptr;
 }
 
+matrix_t::matrix_t(int rows,int collumns){
+    rows_=rows;
+    collumns_=collumns;
+    data = create_matr(rows_, collumns_);
+}
+
 matrix_t::matrix_t( matrix_t const & other ) {
     rows_ = other.rows();
 	collumns_=other.collumns();
