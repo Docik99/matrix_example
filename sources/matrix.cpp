@@ -20,16 +20,15 @@ matrix_t::matrix_t(int rows,int collumns){
     data = create_matr(rows_, collumns_);
 }
 
-matrix_t::matrix_t( matrix_t const & other ) {
-    rows_ = other.rows();
-	collumns_=other.collumns();
-	elements_= new float *[other.rows()];
-	for (std::size_t i = 0; i < other.rows(); ++i) {
-		elements_[i] = new float[other.collumns()];
-		for (std::size_t j = 0; j < other.collumns(); ++j) {
-			elements_[i][j] = other.elements_[i][j];
-		}
-	}
+matrix_t::matrix_t( matrix_t const & object ) {
+    rows_=object.rows_;
+    collumns_=object.collumns_;
+    data=Create_Matrix(rows_, collumns_);
+    for ( int i = 0; i < rows_; ++i){
+        for ( int j = 0; j < collumns_; ++j){
+            data[i][j] = object.data[i][j];
+        }
+    }
 }
 
 matrix_t & matrix_t::operator =( matrix_t const & other ) {
