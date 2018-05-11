@@ -75,16 +75,16 @@ matrix_t matrix_t::operator -( matrix_t const & other ) const {
 
 matrix_t matrix_t::operator *( matrix_t const & other ) const {
     matrix_t result;
+    result.rows_ = rows_;
+    result.collumns_ = collumns_;
     result.elements_ = create_matr(rows_, other.collumns_);
-    for (int i = 0; i < rows_; i++) {
-        for (int j = 0; j < other.collumns_; j++) {
+    for (int i = 0; i<rows_; i++) {
+        for (int j = 0; j<other.collumns_; j++) {
             result.elements_[i][j] = 0;
-            for (int f = 0; f < collumns_; f++)
-                result.elements_[i][j] += elements_[i][f] * other.elements_[f][j];
+            for (int h = 0; h<collumns_; h++)
+                result.elements_[i][j] += elements_[i][h]*other.elements_[h][j];
         }
     }
-    result.rows_ = rows_;
-    result.collumns_ = other.collumns_;
     return result;
 }
 
@@ -104,14 +104,16 @@ matrix_t & matrix_t::operator +=( matrix_t const & other ) {
 
 matrix_t & matrix_t::operator *=( matrix_t const & other ) {
     matrix_t copy(*this);
-    for (int i = 0; i < rows_; i++) {
-        for (int j = 0; j < other.collumns_; j++) {
+    matrix_t copy2(other);
+    for (int i = 0; i<rows_; i++) {
+        for (int j = 0; j<other.collumns_; j++) {
             elements_[i][j] = 0;
-            for (int f = 0; f < collumns_; f++)
-                elements_[i][j] += copy.elements_[i][f] * other.elements_[f][j];
+            for (int h = 0; h<collumns_; h++) {
+                elements_[i][j] += copy.elements_[i][h]*copy2.elements_[h][j];
+            }
         }
     }
-    collumns_ = other.collumns_;
+    this->collumns_ = other.collumns_;
     return *this;
 }
 
