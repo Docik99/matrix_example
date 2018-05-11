@@ -46,11 +46,11 @@ matrix_t::~matrix_t() {
     delete[] elements_;
 }
 
-size_t matrix_t::rows()  {
+unsigned int rows()  {
     return rows_;
 }
 
-size_t matrix_t::collumns() {
+unsigned int collumns() {
     return collumns_;
 }
 
