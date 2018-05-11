@@ -74,18 +74,21 @@ matrix_t matrix_t::operator -( matrix_t const & other ) const {
 }
 
 matrix_t matrix_t::operator *( matrix_t const & other ) const {
-     matrix_t result;
-    result.elements_ = create_matr(rows_, other.collumns_);
-    for (int i = 0; i < rows_; i++) {
-        for (int j = 0; j < other.collumns_; j++) {
-            result.elements_[i][j] = 0;
-            for (int f = 0; f < collumns_; f++)
-                result.elements_[i][j] += elements_[i][f] * other.elements_[f][j];
-        }
-    }
-    result.rows_ = rows_;
-    result.collumns_ = other.collumns_;
-    return result;
+    matrix_t result;
+	result.rows_=rows_;
+	result.collumns_=other.collumns_;
+	result.elements_=new float *[rows_];
+        for (std::size_t i = 0; i < rows_; i++) {
+             	result.elements_[i]=new float[other.collumns()];
+		for (std::size_t j = 0; j < other.collumns(); j++) {
+			float temp = 0;
+			for (std::size_t k = 0; k < collumns_; k++) {
+			temp += elements_[i][k] * other.elements_[k][j];
+			}
+			result.elements_[i][j] = temp;
+		}
+	} 
+	return result;
 }
 
 matrix_t & matrix_t::operator -=( matrix_t const & other ) {
@@ -103,18 +106,26 @@ matrix_t & matrix_t::operator +=( matrix_t const & other ) {
 }
 
 matrix_t & matrix_t::operator *=( matrix_t const & other ) {
-    matrix_t copy(*this);
-    matrix_t copy2(other);
-    for (int i = 0; i<rows_; i++) {
-        for (int j = 0; j<other.collumns_; j++) {
-            elements_[i][j] = 0;
-            for (int h = 0; h<collumns_; h++) {
-                elements_[i][j] += copy.elements_[i][h]*copy2.elements_[h][j];
-            }
-        }
-    }
-    this->collumns_ = other.collumns_;
-    return *this;
+    matrix_t result;
+	result.rows_=rows_;
+	result.collumns_=other.collumns_;
+	result.elements_=new float *[rows_];
+        for (std::size_t i = 0; i < rows_; i++) {
+             	result.elements_[i]=new float[other.collumns()];
+		for (std::size_t j = 0; j < other.collumns(); j++) {
+			float temp = 0;
+			for (std::size_t k = 0; k < collumns_; k++) {
+			temp += elements_[i][k] * other.elements_[k][j];
+			}
+			result.elements_[i][j] = temp;
+		}
+	} 
+	for (std::size_t i = 0; i < rows_; i++) {
+		for (std::size_t j = 0; j < other.collumns(); j++){
+			elements_[i][j]=result.elements_[i][j];
+		}
+	}
+	return *this;
 }
 
 istream & matrix_t::read( std::istream & stream ) {
