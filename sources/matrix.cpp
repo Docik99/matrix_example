@@ -8,7 +8,7 @@ float ** create_matr (int rows_,int collumns_){
         for (int j = 0; j < collumns_; j++)
             new_matr[i][j] = 0;
     }
-    return  new_matr;
+    return  ** new_matr;
 }
 
 matrix_t::matrix_t() {
