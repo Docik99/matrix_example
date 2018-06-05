@@ -7,6 +7,7 @@ private:
     unsigned int collumns_;
 public:
     matrix_t();
+    matrix_t(int rows,int collumns);
     matrix_t( matrix_t const & other );
     matrix_t & operator =( matrix_t const & other );
     ~matrix_t();
