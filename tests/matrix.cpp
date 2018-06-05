@@ -58,15 +58,15 @@ TEST_CASE("a+b")
     
     matrix1.read(istream1);
     matrix2.read(istream2);
-    //matrix3 = matrix1 + matrix2;
+    matrix3 = matrix1 + matrix2;
     
     REQUIRE( matrix3.rows() == 3 );
     REQUIRE( matrix3.collumns() == 3 );
     
-    //ostringstream ostream;
-    //matrix3.write( ostream );
+    ostringstream ostream;
+    matrix3.write( ostream );
     
-    //REQUIRE( input3 == ostream.str());
+    REQUIRE( input3 == ostream.str());
 }
 
 TEST_CASE("a-b")
