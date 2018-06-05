@@ -20,7 +20,7 @@ matrix_t::matrix_t() {
 matrix_t::matrix_t(int rows,int collumns){
     rows_=rows;
     collumns_=collumns;
-    data = create_matr(rows_, collumns_);
+    elements_ = create_matr(rows_, collumns_);
 }
 
 matrix_t::matrix_t( matrix_t const & other ) {
