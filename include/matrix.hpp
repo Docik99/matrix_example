@@ -12,8 +12,8 @@ public:
     matrix_t & operator =( matrix_t const & other );
     ~matrix_t();
     
-    unsigned int Get_Stroki() const;
-    unsigned int Get_Stolbi() const;
+    unsigned int rows() const;
+    unsigned int collumns() const;
     
     matrix_t operator +( matrix_t const & other ) const;
     matrix_t operator -( matrix_t const & other ) const;
