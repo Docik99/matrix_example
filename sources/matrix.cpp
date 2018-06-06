@@ -116,7 +116,7 @@ matrix_t & matrix_t::operator *=( matrix_t const & other ) {
         for (int j = 0; j < other.collumns_; j++) {
             elements_[i][j] = 0;
             for (int f = 0; f < collumns_; f++)
-                elements_[i][j] += elements_[i][f] * other.elements_[f][j];
+                elements_[i][j] += copy.elements_[i][f] * other.elements_[f][j];
         }
     }
     collumns_ = other.collumns_;
