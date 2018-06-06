@@ -131,7 +131,7 @@ TEST_CASE("a*b")
         "3, 2\n"
         "8 8\n"
         "8 8\n"
-        "8 8 " };
+        "8 8" };
     matrix_t matrix3;
     istringstream istream3{input3};
     
@@ -166,9 +166,9 @@ TEST_CASE("a*=b")
     istringstream istream2{input2};
     string input3{
         "3, 2\n"
-        "11 16 \n"
-        "22 32 \n"
-        "33 48 " };
+        "11 16\n"
+        "22 32\n"
+        "33 48" };
     
     matrix1.read(istream1);
     matrix2.read(istream2);
