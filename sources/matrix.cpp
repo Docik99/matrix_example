@@ -73,7 +73,7 @@ matrix_t matrix_t::operator +( matrix_t const & other ) const {
 }
 
 matrix_t matrix_t::operator -( matrix_t const & other ) const {
-    matrix_t result;
+     matrix_t result(rows_, collumns_);
     for (unsigned int i = 0; i < rows_; i++)
         for (unsigned int j = 0; j < collumns_; j++)
             result.elements_[i][j] = elements_[i][j] - other.elements_[i][j];
