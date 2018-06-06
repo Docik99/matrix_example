@@ -197,7 +197,7 @@ istream & matrix_t::read( istream & stream )
 ostream & matrix_t::write( ostream & stream ) const
 {
     
-    stream << stroki << "," << stolbi;
+    stream << stroki << ", " << stolbi;
     for( unsigned int i = 0; i < stroki; ++i ) {
         stream <<'\n';
         for( unsigned int j = 0; j < stolbi; ++j ) {
