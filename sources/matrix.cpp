@@ -62,12 +62,12 @@ matrix_t::~matrix_t()
     
 }
 
-unsigned int matrix_t::Get_Stroki() const
+unsigned int matrix_t::rows() const
 {
     return stroki;
 }
 
-    unsigned int matrix_t::Get_Stolbi() const
+    unsigned int matrix_t::collumns() const
 {
     return stolbi;
 }
