@@ -131,7 +131,7 @@ TEST_CASE("a*b")
         "3, 2\n"
         "8 8\n"
         "8 8\n"
-        "8 8" };
+        "8 8 " };
     matrix_t matrix3;
     istringstream istream3{input3};
     
