@@ -2,13 +2,13 @@
 
 class matrix_t {
 private:
-    int ** data;
-    unsigned int stroki;
-    unsigned int stolbi;
+    float ** elements_;
+    unsigned int rows_;
+    unsigned int collumns_;
 public:
     matrix_t();
-    matrix_t(int in_stroki,int in_stolbi);
-    matrix_t( matrix_t const & object );
+    matrix_t(int rows,int collumns);
+    matrix_t( matrix_t const & other );
     matrix_t & operator =( matrix_t const & other );
     ~matrix_t();
     
