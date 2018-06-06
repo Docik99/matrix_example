@@ -89,8 +89,6 @@ matrix_t matrix_t::operator *( matrix_t const & other ) const {
                 result.elements_[i][j] += elements_[i][f] * other.elements_[f][j];
         }
     }
-    result.rows_ = rows_;
-    result.collumns_ = other.collumns_;
     return result;
 }
 
