@@ -123,17 +123,17 @@ matrix_t & matrix_t::operator *=( matrix_t const & other ) {
     return *this;
 }
 
-istream & matrix_t::read( std::istream & stream ) {
-    size_t rows;
-    size_t collumns;
+istream & matrix_t::read( istream & stream ) {
+    int rows;
+    int collumns;
     char symbol;
 
     bool success = true;
     if( stream >> rows && stream >> symbol && symbol == ',' && stream >> collumns ) {
         float ** elements = new float *[ rows ];
-        for( std::size_t i = 0; success && i < rows; ++i ) {
+        for( int i = 0; success && i < rows; ++i ) {
             elements[ i ] = new float[ collumns ];
-            for( std::size_t j = 0; j < collumns; ++j ) {
+            for( int j = 0; j < collumns; ++j ) {
                 if( !( stream >> elements[ i ][ j ] ) ) {
                     success = false;
                     break;
@@ -142,7 +142,7 @@ istream & matrix_t::read( std::istream & stream ) {
         }
 
         if( success ) {
-            for( std::size_t i = 0; i < rows_; ++i ) {
+            for( int i = 0; i < rows_; ++i ) {
                 delete [] elements_[ i ];
             }
             delete [] elements_;
@@ -152,7 +152,7 @@ istream & matrix_t::read( std::istream & stream ) {
             elements_ = elements;
         }
         else {
-            for( std::size_t i = 0; i < rows; ++i ) {
+            for( int i = 0; i < rows; ++i ) {
                 delete [] elements[ i ];
             }
             delete [] elements;
@@ -169,11 +169,11 @@ istream & matrix_t::read( std::istream & stream ) {
     return stream;
 }
 
-ostream & matrix_t::write( std::ostream & stream ) const {
+ostream & matrix_t::write( ostream & stream ) const {
     stream << rows_ << ", " << collumns_;
-    for( std::size_t i = 0; i < rows_; ++i ) {
+    for( int i = 0; i < rows_; ++i ) {
         stream << '\n';
-        for( std::size_t j = 0; j < collumns_; ++j ) {
+        for( int j = 0; j < collumns_; ++j ) {
             stream << elements_[ i ][ j ];
             if( j != rows_ - 1 ) {
                 stream << ' ';
