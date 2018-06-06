@@ -142,29 +142,20 @@ istream & matrix_t::read( istream & stream ) {
         }
 
         if( success ) {
-            for( int i = 0; i < rows_; ++i ) {
-                delete [] elements_[ i ];
-            }
+            for( int i = 0; i < rows_; ++i ) delete [] elements_[ i ];
             delete [] elements_;
-
             rows_ = rows;
             collumns_ = collumns;
             elements_ = elements;
         }
         else {
-            for( int i = 0; i < rows; ++i ) {
-                delete [] elements[ i ];
-            }
+            for( int i = 0; i < rows; ++i ) delete [] elements[ i ];
             delete [] elements;
         }
     }
-    else {
-        success = false;
-    }
+    else success = false;
 
-    if( !success ) {
-        stream.setstate( std::ios_base::failbit );
-    }
+    if( !success ) stream.setstate( std::ios_base::failbit );
 
     return stream;
 }
@@ -175,11 +166,8 @@ ostream & matrix_t::write( ostream & stream ) const {
         stream << '\n';
         for( int j = 0; j < collumns_; ++j ) {
             stream << elements_[ i ][ j ];
-            if( j != rows_ - 1 ) {
-                stream << ' ';
-            }
+            if( j != collumns_ - 1 ) stream << ' ';
         }
     }
-
     return stream;
 }
