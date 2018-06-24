@@ -63,6 +63,8 @@ unsigned int matrix_t::collumns() const {
 }
 
 matrix_t matrix_t::operator +( matrix_t const & other ) const {
+    assert(rows_ == other.rows_ && collumns_ == other.collumns_);
+    matrix_t result(rows_, collumns_);
     matrix_t result(rows_, collumns_);
     for (unsigned int i = 0; i < rows_; i++){
         for (unsigned int j = 0; j < collumns_; j++){
@@ -73,6 +75,8 @@ matrix_t matrix_t::operator +( matrix_t const & other ) const {
 }
 
 matrix_t matrix_t::operator -( matrix_t const & other ) const {
+    assert(rows_ == other.rows_ && collumns_ == other.collumns_);
+    matrix_t result(rows_, collumns_);
      matrix_t result(rows_, collumns_);
     for (unsigned int i = 0; i < rows_; i++)
         for (unsigned int j = 0; j < collumns_; j++)
@@ -81,6 +85,7 @@ matrix_t matrix_t::operator -( matrix_t const & other ) const {
 }
 
 matrix_t matrix_t::operator *( matrix_t const & other ) const {
+    assert(collumns_ == other.rows_ );
     matrix_t result(rows_, other.collumns_);
     for (int i = 0; i < rows_; i++) {
         for (int j = 0; j < other.collumns_; j++) {
@@ -93,6 +98,8 @@ matrix_t matrix_t::operator *( matrix_t const & other ) const {
 }
 
 matrix_t & matrix_t::operator -=( matrix_t const & other ) {
+    assert(rows_ == other.rows_ && collumns_ == other.collumns_);
+    matrix_t result(rows_, collumns_);
     rows_ = other.rows_;
     collumns_ = other.collumns_;
     for (unsigned int i = 0; i < rows_; i++)
@@ -102,6 +109,8 @@ matrix_t & matrix_t::operator -=( matrix_t const & other ) {
 }
 
 matrix_t & matrix_t::operator +=( matrix_t const & other ) {
+    assert(rows_ == other.rows_ && collumns_ == other.collumns_);
+    matrix_t result(rows_, collumns_);
     rows_ = other.rows_;
     collumns_ = other.collumns_;
     for (unsigned int i = 0; i < rows_; i++)
@@ -111,6 +120,7 @@ matrix_t & matrix_t::operator +=( matrix_t const & other ) {
 }
 
 matrix_t & matrix_t::operator *=( matrix_t const & other ) {
+    assert(collumns_ == other.rows_ );
     matrix_t copy(*this);
     for (int i = 0; i < rows_; i++) {
         for (int j = 0; j < other.collumns_; j++) {
